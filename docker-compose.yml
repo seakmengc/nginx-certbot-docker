@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nginx:
+    image: jonasal/nginx-certbot:3.1.2-nginx1.21.6-alpine
+    restart: unless-stopped
+    environment:
+      - CERTBOT_EMAIL=c.seakmeng0603@gmail.com
+      - STAGING=1
+      - DEBUG=1
+      - USE_LOCAL_CA=1
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./data/letsencrypt:/etc/letsencrypt
+      - ./conf.d:/etc/nginx/conf.d
